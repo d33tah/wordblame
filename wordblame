@@ -10,6 +10,11 @@ introduced a particular word.
 
 For usage information, run this program with --help command-line argument.
 
+Sample usage:
+
+./wordblame --list-cmd './wikipedia-list-changes Rosselia_bracteata' \\
+    --get-cmd './wikipedia-show-change' > report.html
+
 Author: Jacek Wielemborek, licensed under WTFPL.
 """
 
