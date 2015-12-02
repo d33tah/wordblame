@@ -75,7 +75,7 @@ def report(args, gitdir, space_marker, fpath):
         sys.stdout.write(href_start)
 
         if text.endswith(space_marker):
-            sys.stdout.write(text[:-len(space_marker)])
+            sys.stdout.write(text[:-len(space_marker)] + ' ')
         else:
             sys.stdout.write(text)
             sys.stdout.write('<br />\n')
