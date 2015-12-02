@@ -9,11 +9,11 @@ introduced a particular word.
 
 For usage information, run this program with --help command-line argument.
 
-Sample usage:
+Sample usage - you can replace "Nmap" with other article name:
 
 ```
-./wordblame --list-cmd './wikipedia-list-changes Rosselia_bracteata' \
-    --get-cmd './wikipedia-show-change' \
+./wordblame --get-cmd "./wikipedia-show-change" \
+    --list-cmd "./wikipedia-list-changes 'https://en.wikipedia.org/w/index.php?title=Nmap&action=history' " \
     --url-cmd="sed 's@&action=edit@\&diff=prev@g'" --verbose > report.html
 ```
 

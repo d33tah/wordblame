@@ -14,13 +14,13 @@ from lxml import html
 import urllib
 import sys
 
-inurl = 'https://en.wikipedia.org/w/index.php?title=%s&limit=500&action=history' % sys.argv[1]
+inurl = sys.argv[1] + '&limit=10000'
 while True:
     t = html.parse(urllib.urlopen(inurl))
     for a in t.xpath('//a [@class="mw-changeslist-date"]'):
         url = 'https://en.wikipedia.org' + a.get('href') + '&action=edit'
         print(url)
-    n = t.xpath('//a [contains(.,"older 500")]')
+    n = t.xpath('//a [@rel="next"]')
     if n:
         inurl = 'https://en.wikipedia.org/' + n[0].get('href')
     else:
