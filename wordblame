@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+
+"""
+Performs a word-by-word "blame" command, as known from version control
+systems.
+
+Usually "blame" is implemented on a per-line basis - this program is an
+attempt at creating a tool that would enable the user to find out which change
+introduced a particular word.
+
+For usage information, run this program with --help command-line argument.
+
+Author: Jacek Wielemborek, licensed under WTFPL.
+"""
+
+
+def main(args):
+    pass
+
+if __name__ == '__main__':
+    import argparse
+    cls = argparse.RawDescriptionHelpFormatter
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=cls)
+    args = parser.parse_args()
+    main(args)
