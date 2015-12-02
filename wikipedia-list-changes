@@ -1,32 +1,25 @@
 #!/usr/bin/env python
 
 """
-Usage:
+A program that lists URLs with changes for a given Wikipedia article.
 
-./dl-revisions.py Nmap > urls.txt
+Sample usage:
+
+./dl-revisions.py Nmap
+
+AUTHOR: Jacek Wielemborek, licensed under WTFPL.
 """
 
 from lxml import html
 import urllib
-import uuid
-
-E = str(uuid.uuid4())
-def get_hexed(url):
-    print(url)
-    h = urllib.urlopen(url).read()
-    t = html.fromstring(h)
-    open('/tmp/meh/' + url.replace('/', '_'), "w").write(h)
-    z = t.xpath('//textarea')[0].text
-    ret = z.replace(' ', E+'\n')
-    open('/tmp/meh2/' + url.replace('/', '_'), "w").write(ret.encode('utf-8'))
-    return ret
+import sys
 
 inurl = 'https://en.wikipedia.org/w/index.php?title=%s&limit=500&action=history' % sys.argv[1]
 while True:
     t = html.parse(urllib.urlopen(inurl))
     for a in t.xpath('//a [@class="mw-changeslist-date"]'):
         url = 'https://en.wikipedia.org' + a.get('href') + '&action=edit'
-        e = get_hexed(url)
+        print(url)
     n = t.xpath('//a [contains(.,"older 500")]')
     if n:
         inurl = 'https://en.wikipedia.org/' + n[0].get('href')

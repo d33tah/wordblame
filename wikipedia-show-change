@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+
+"""
+Shows Wikipedia code for a specified change URL.
+
+Sample usage:
+
+./wikipedia-show-change 'https://en.wikipedia.org/w/index.php?title=Nmap&oldid=2097575&action=edit'
+
+AUTHOR: Jacek Wielemborek, licensed under WTFPL.
+"""
+
+from lxml import html
+import urllib
+import sys
+
+tree = html.fromstring(urllib.urlopen(sys.argv[1]).read())
+print(tree.xpath('//textarea')[0].text)
