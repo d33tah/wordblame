@@ -63,10 +63,8 @@ def add_article(args, article_id, gitdir, space_marker, fpath):
 
 def report(args, gitdir, space_marker, fpath):
 
-    skipped_sample = ('84b3b2ad (Jacek Wielemborek '
-                      '2015-11-30 11:33:20 +0100   87) ')
-
-    blamed = subprocess.check_output(['git', '-C', gitdir, 'blame', 'file'])
+    blamed = subprocess.check_output(['git', '-C', gitdir,
+                                      'blame', '-s', 'file'])
 
     for line in blamed.split('\n'):
         if line == '':
@@ -76,7 +74,7 @@ def report(args, gitdir, space_marker, fpath):
         cmd = ['git', '-C', gitdir, 'show', '-s', '--format=%B', commit]
         article_id = subprocess.check_output(cmd).rstrip()
 
-        text = line[len(skipped_sample):].rstrip()
+        text = line[line.find(') ')+2:].rstrip()
 
         color = commit[:6]
         if args.url_cmd:
