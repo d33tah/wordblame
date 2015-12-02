@@ -13,7 +13,7 @@ Sample usage - you can replace "Nmap" with other article name:
 
 ```
 ./wordblame --get-cmd "./wikipedia-show-change" \
-    --list-cmd "./wikipedia-list-changes 'https://en.wikipedia.org/w/index.php?title=Nmap&action=history' " \
+    --list-cmd "./wikipedia-list-changes 'https://en.wikipedia.org/w/index.php?title=Nmap&action=history'" \
     --url-cmd="sed 's@&action=edit@\&diff=prev@g'" --verbose > report.html
 ```
 
